@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <title>PUBG MOBILE UC</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-container">
+                <a href=""><img src="{% static 'img/pubg.jpg' %}" alt=""></a>
+            </div>
+            <nav>
+                <input class="hidden" type="checkbox" id="menuToggle">
+                <label class="menu-btn" for="menuToggle">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                </label>
+                <div class="nav-container">
+                    <ul class="nav-tabs">
+                        <li class="nav-tab"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-tab"><a href="{% url 'add_pay' %}">Add Payment</a></li>
+                        <li class="nav-tab"><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="services">
+        <div class="service">
+            <a href="{% url 'ucpubg' %}">
+                <h3>UC PUBG</h3>
+                <img src="{% static 'img/pubg.jpg' %}" alt="">
+            </a>
+        </div>
+        <div class="service">
+            <a href="{% url 'instagram' %}">
+                <h3>Instagram</h3>
+                <img src="{% static 'img/instagram (2).png' %}" alt="">
+            </a>
+        </div>
+        <div class="service">
+            <a href="">
+                <h3>TikTok</h3>
+                <img src="{% static 'img/tiktok.png' %}" alt="">
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .services {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .service {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 15%;
+            height: 250px;
+            box-shadow: 5px 5px 5px 5px #f5f5f5;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .service:hover {
+            box-shadow: 15px 15px 15px 15px #f5f5f5;
+            transition: 0.6s all ease-in-out;
+            transform: translateY(-20px);
+        }
+
+        .service a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .service a img {
+            width: 70%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1090px) {
+            .service {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 790px) {
+            .service {
+                width: 20%;
+                height: 175px;
+            }
+
+            .service a img {
+                width: 50%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .service {
+                width: 30%;
+                height: 200px;
+            }
+
+            .service a img {
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .service {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 330px) {
+            .service {
+                width: 35%;
+                height: 180px;
+            }
+
+            .service a img {
+                padding-top: 5px;
+            }
+        }
+    </style>
+
+</body>
+
+</html>

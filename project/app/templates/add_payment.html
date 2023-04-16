@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_pay.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <title>Add Pay</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-container">
+                <a href=""><img src="{% static 'img/pubg.jpg' %}" alt=""></a>
+            </div>
+            <nav>
+                <input class="hidden" type="checkbox" id="menuToggle">
+                <label class="menu-btn" for="menuToggle">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                </label>
+                <div class="nav-container">
+                    <ul class="nav-tabs">
+                        <li class="nav-tab"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-tab"><a href="{% url 'add_pay' %}">Add Payment</a></li>
+                        <li class="nav-tab"><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="how-to-add">
+        <h4>When you order a service, you must first send money to the following numbers to activate your account and
+            successfully process your order</h4>
+
+        <h2>Payment by <span>Fastpay</span></h2>
+        <p>07518980248 <i class="bx bx-phone"></i></p>
+
+        <div class="by-korak">
+            <h2>Payment by <span>Korak</span></h2>
+            <p>07518980248 <i class="bx bx-phone"></i></p>
+        </div>
+    </div>
+
+</body>
+
+</html>

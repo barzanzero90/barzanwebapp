@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    overflow-x: none;
+}
+
+body {
+    background-color: #100B2F;
+    color: white;
+}
+
+p {
+    text-align: center;
+    padding: 10px 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: orange;
+    transition: 0.5s ease-in-out;
+}
+
+p img {
+    width: 13px;
+    height: 13px;
+}
+
+.user-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}

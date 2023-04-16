@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  {% if request.user.is_authenticated %}
+  {% for money in moneys %}
+  <input type="text" readonly value="{{request.user.username}}" id="username" style="display: none;">
+  <input type="text" readonly value="You have {{money.price}} IQD" id="money"> <br> <br>
+  <input type="text" id="uc_value" readonly value="60 UC (1000) IQD"> <br> <br>
+  <input type="number" placeholder="Player ID" id="player_id"> <br> <br>
+  <button type="submit" onclick="submitData()" id="submit">Order</button> <br>
+  {% empty %}
+  <input type="text" id="uc_value" readonly value="60 UC (1000) IQD"> <br> <br>
+  <input type="text" readonly value="You have 0 moneys" id="money"> <br> <br>
+  <button type="submit" onclick="submitData()" id="submit">Order</button> <br>
+  {% endfor %}
+  {% endif %}
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwQrpfh2S_0S_K0eRyXdh798Z_m75vLOI",
+      authDomain: "ucpubg-3fe17.firebaseapp.com",
+      projectId: "ucpubg-3fe17",
+      storageBucket: "ucpubg-3fe17.appspot.com",
+      messagingSenderId: "46886713406",
+      appId: "1:46886713406:web:ef5a9212512aa4ead6796f",
+      measurementId: "G-PEQ790Z3QY"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    function submitData() {
+      var username = document.getElementById("username").value;
+      var money = document.getElementById("money").value;
+      var uc_value = document.getElementById("uc_value").value;
+      var player_id = document.getElementById("player_id").value;
+      var date = new Date().toJSON()
+
+      var userData = {
+        username: username,
+        money: money,
+        uc_value: uc_value,
+        player_id: player_id,
+        date: date
+      };
+
+      var database = firebase.database().ref('user-orders');
+      database.push(userData);
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ucpubg.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/pubg.jpg' %}" type="image/x-icon">
+    <title>UC PUBG</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-container">
+                <a href=""><img src="{% static 'img/pubg.jpg' %}" alt=""></a>
+            </div>
+            <nav>
+                <input class="hidden" type="checkbox" id="menuToggle">
+                <label class="menu-btn" for="menuToggle">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                </label>
+                <div class="nav-container">
+                    <ul class="nav-tabs">
+                        <li class="nav-tab"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-tab"><a href="{% url 'add_pay' %}">Add Payment</a></li>
+                        <li class="nav-tab"><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <center>
+        <h2>UC PUBG <img src="{% static 'img/smalluc.png' %}" alt=""></h2>
+        <img src="{% static 'img/pubg.jpg' %}" alt="" style="border-radius: 4px;">
+    </center>
+
+    <div id="testservice">
+        <div class="uc" id="uc" onclick="uc60()">
+            <h3>60 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/60uc.png' %}" alt="">
+            <p class="price">1000 IQD</p>
+        </div>
+        <div class="uc" id="uc" onclick="uc120()">
+            <h3>120 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/180uc.png' %}" alt="">
+            <p class="price">2000 IQD</p>
+        </div>
+        <div class="uc" id="uc" onclick="uc300()">
+            <h3>300 + 90 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/180uc.png' %}" alt="">
+            <p class="price">6500 IQD</p>
+        </div>
+        <div class="uc" id="uc" onclick="uc600()">
+            <h3>600 + 120 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/180uc.png' %}" alt="">
+            <p class="price">13000 IQD</p>
+        </div>
+        <div class="uc" id="uc" onclick="uc900()">
+            <h3>900 + 180 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/180uc.png' %}" alt="">
+            <p class="price">17000 IQD</p>
+        </div>
+        <div class="uc" id="uc" onclick="uc1187()">
+            <h3>1187 + 240 <img src="{% static 'img/smalluc.png' %}" alt=""></h3>
+            <img src="{% static 'img/180uc.png' %}" alt="">
+            <p class="price">25000 IQD</p>
+        </div>
+    </div>
+
+    <div id="testservice1" style="display: none;">
+        <div id="60uc" style="display: none;">
+            <h2>Order Page</h2>
+            {% if request.user.is_authenticated %}
+            <input type="text" id="username" value="{{user.username}}" style="display: none;">
+            {% for money in moneys %}
+            <input type="text" readonly value="You have {{money.price}} IQD" id="money"> <br>
+            <label for="">Service</label>
+            <input readonly id="input" value="60 UC     ( 1000 ) IQD"> <br>
+            <label for="">Player ID</label>
+            <input type="number" id="player_id" placeholder="Player ID" required> <br>
+            <button type="submit" onclick="submitData()" id="submit">Order</button> <br>
+            {% empty %}
+            <input type="text" readonly value="You have 0 IQD" id="money"> <br>
+            <label for="">Service</label>
+            <input readonly id="input" value="60 UC     ( 1000 ) IQD"> <br>
+            <label for="">Player ID</label>
+            <input type="number" id="player_id" placeholder="Player ID" required> <br>
+            <button type="submit" onclick="submitData()" id="submit">Order</button> <br>
+            {% endfor %}
+            {% endif %}
+
+            <style>
+                h2 {
+                    text-align: center;
+                }
+
+                p {
+                    text-align: center;
+                }
+
+                #username {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                label {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                #input {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                #money {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                    border: none;
+                    text-align: center;
+                    font-size: 1rem;
+                }
+
+                #player_id {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                #submit {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    margin: 0 auto;
+                    padding: 13px 60px;
+                    background-color: #2196F3;
+                    color: #fff;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                }
+            </style>
+
+        </div>
+    </div>
+    <div id="120uc" style="display: none;">
+        <h2>Order Page</h2>
+            {% if request.user.is_authenticated %}
+            <input type="text" id="username" value="{{user.username}}" style="display: none;">
+            {% for money in moneys %}
+            <input type="text" readonly value="You have {{money.price}} IQD" id="money"> <br>
+            <label for="">Service</label>
+            <input readonly id="uc_chosen" value="120 UC     ( 2000 ) IQD"> <br>
+            <label for="">Player ID</label>
+            <input type="number" id="id_player" placeholder="Player ID" required> <br>
+            <button type="submit" onclick="UCVALUE120()" id="submit">Order</button> <br>
+            {% empty %}
+            <input type="text" readonly value="You have 0 IQD" id="money"> <br>
+            <label for="">Service</label>
+            <input readonly id="uc_chosen" value="120 UC     ( 2000 ) IQD"> <br>
+            <label for="">Player ID</label>
+            <input type="number" id="id_player" placeholder="Player ID" required> <br>
+            <button type="submit" onclick="UCVALUE120()" id="submit">Order</button> <br>
+            {% endfor %}
+            {% endif %}
+
+            <style>
+                h2 {
+                    text-align: center;
+                }
+
+                p {
+                    text-align: center;
+                }
+
+                #username {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                label {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                #uc_chosen {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                #money {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                    border: none;
+                    text-align: center;
+                    font-size: 1rem;
+                }
+
+                #id_player {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: 10px 20px;
+                }
+
+                #submit {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    margin: 0 auto;
+                    padding: 13px 60px;
+                    background-color: #2196F3;
+                    color: #fff;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                }
+            </style>
+
+    </div>
+    </div>
+    <div id="300uc" style="display: none;">
+        <h2>Order Page</h2>
+        {% for money in moneys %}
+        <p>You have {{money.price}} IQD</p>
+        <label for="">Service</label>
+        <input readonly id="input" value="300 + 90 UC  ( 6500 ) IQD"> <br>
+        <label for="">Player ID</label>
+        <input type="number" id="input" placeholder="Player ID"> <br>
+        <button type="submit" id="submit">Order</button> <br>
+        {% empty %}
+        <p>You have 0 IQD</p>
+        <label for="">Service</label>
+        <input readonly id="input" value="300 + 90 UC  ( 6500 ) IQD"> <br>
+        <label for="">Player ID</label>
+        <input type="number" id="input" placeholder="Player ID"> <br>
+        <button type="submit" id="submit">Order</button> <br>
+        {% endfor %}
+
+        <style>
+            h2 {
+                text-align: center;
+            }
+
+            p {
+                text-align: center;
+            }
+
+            label {
+                display: flex;
+                justify-content: center;
+            }
+
+            #input {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto;
+                padding: 10px 20px;
+            }
+
+            #submit {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                margin: 0 auto;
+                padding: 13px 60px;
+                background-color: #2196F3;
+                color: #fff;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </div>
+    </div>
+    <div id="600uc" style="display: none;">
+        <h2>Order Page</h2>
+        {% for money in moneys %}
+        <p>You have {{money.price}} IQD</p>
+        <input readonly value="600 + 120 UC">
+        {% empty %}
+        <input readonly value="600 + 120 UC">
+        {% endfor %}
+    </div>
+    <div id="900uc" style="display: none;">
+        <h2>Order Page</h2>
+        {% for money in moneys %}
+        <p>You have {{money.price}} IQD</p>
+        <input readonly value="900 + 180 UC">
+        {% empty %}
+        <input readonly value="900 + 180 UC">
+        {% endfor %}
+    </div>
+    <div id="1187uc" style="display: none;">
+        <h2>Order Page</h2>
+        {% for money in moneys %}
+        <p>You have {{money.price}} IQD</p>
+        <input readonly value="1187 + 240 UC">
+        {% empty %}
+        <input readonly value="1187 + 240 UC">
+        {% endfor %}
+    </div>
+    </div>
+
+    <style>
+        #testservice {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        .uc {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 5px 5px 5px 5px #f5f5f5;
+            width: 13%;
+            height: 180px;
+            margin: 0 5px;
+            padding: 30px 0;
+            border-radius: 10px;
+        }
+
+        .uc:hover {
+            box-shadow: 15px 15px 15px 15px #f5f5f5;
+            transition: 0.6s all ease-in-out;
+            transform: translateY(-15px);
+        }
+
+        .uc h3 {
+            text-align: center;
+        }
+
+        .uc .price {
+            text-align: center;
+            background-color: #E7E7E7;
+            padding: 8px 10px;
+            margin: 10px auto;
+        }
+
+        @media (max-width: 391px) {
+            .uc {
+                margin: 0 auto;
+            }
+        }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
+    <script>
+        function uc60() {
+            document.getElementById("60uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+        function uc120() {
+            document.getElementById("120uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+        function uc300() {
+            document.getElementById("300uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+        function uc600() {
+            document.getElementById("600uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+        function uc900() {
+            document.getElementById("900uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+        function uc1187() {
+            document.getElementById("1187uc").style.display = "block";
+            document.getElementById("testservice").style.display = "none";
+            document.getElementById("testservice1").style.display = "block";
+        }
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAwQrpfh2S_0S_K0eRyXdh798Z_m75vLOI",
+            authDomain: "ucpubg-3fe17.firebaseapp.com",
+            projectId: "ucpubg-3fe17",
+            storageBucket: "ucpubg-3fe17.appspot.com",
+            messagingSenderId: "46886713406",
+            appId: "1:46886713406:web:ef5a9212512aa4ead6796f",
+            measurementId: "G-PEQ790Z3QY"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function submitData() {
+            var username = document.getElementById("username").value;
+            var money = document.getElementById("money").value;
+            var uc_value = document.getElementById("input").value;
+            var player_id = document.getElementById("player_id").value;
+            var date = new Date().toJSON()
+
+            var userData = {
+                username: username,
+                money: money,
+                uc_value: uc_value,
+                player_id: player_id,
+                date: date
+            };
+
+            var database = firebase.database().ref('60uc');
+            database.push(userData);
+        }
+
+        function UCVALUE120() {
+            var username = document.getElementById("username").value;
+            var money = document.getElementById("money").value;
+            var uc = document.getElementById("uc_chosen").value;
+            var id_player = document.getElementById("id_player").value;
+            var date = new Date().toJSON()
+
+            var userData = {
+                username: username,
+                money: money,
+                uc: uc,
+                id_player: id_player,
+                date: date
+            };
+
+            var database = firebase.database().ref('120uc');
+            database.push(userData);
+        }
+    </script>
+
+</body>
+
+</html>
